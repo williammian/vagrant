@@ -1,0 +1,65 @@
+Vagrant
+
+Networking
+
+Forwarded Ports
+
+No Vagrantfile
+
+config.vm.network "forwarded_port", guest: 80, host: 8089
+
+guest
+É na máquina virtual
+
+host
+Máquina hospedeira
+
+----------------------------------
+
+Descobrir quais aplicações estão trabalhando na porta  8089. (no windows0
+netstat -o -n -a | findstr  0.160:51671
+.:. 0.160  são os dois números finais do IP 192.168.0.160 e 8089 é a porta
+
+------------------------------------
+
+IP na rede privada (Private Network)
+Só consegue acessar a máquina virtual a partir do host
+
+Static IP
+
+config.vm.network "private_network", ip: "192.168.50.4"
+
+-------------------------------------
+
+DHCP do VirtualBox
+
+config.vm.network "private_network", type: "dhcp"
+
+---------------------------------------
+
+IP na rede pública (bridge)
+Public Network
+Consegue acessar a máquina virtual a partir de qualquer máquina/host da rede interna
+
+config.vm.network "public_network", ip: "198.168.15.78"
+
+----------------------------------------
+
+config.vm.network "public_network",
+    use_dhcp_assigned_default_route: true
+    
+------------------------------------------
+
+Instalar nginx para teste
+
+sudo apt-get update && apt-get install -y nginx
+
+ou 
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+------------------------------------------
+
+
+

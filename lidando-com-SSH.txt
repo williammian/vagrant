@@ -1,0 +1,71 @@
+Lidando com SSH
+
+Chaves públicas são gravadas na pasta .ssh/authorized_keys
+
+cat .ssh/authorized_keys
+
+ssh -i .vagrant/machines/default/virtualbox/private_key vagrant@192.168.15.78
+
+--------------------------------------------------------
+
+Disponibilizar a chave privada para as outras máquinas poderem acessar
+
+--------------------------------------------------------
+
+vagrant ssh
+
+Ao usar o comando vagrant ssh, é estabelecido uma conexão SSH com a máquina virtual.
+É usada uma chave pública e privada para se autenticar.
+As chaves são automaticamente geradas e a chave pública é adicionada na máquina virtual.
+É usado localhost para se conectar com a máquina virtual.
+
+--------------------------------------------------------
+
+Gerando uma chave SSH
+
+ssh-keygen -t rsa
+
+--------------------------------------------------------
+
+Entrar na máquina virtual
+
+ls /vagrant/
+há uma pasta compartilhada
+
+copiar a chave pública para a maquina virtual
+
+cp /vagrant/id_bionic.pub .
+
+-------------------------------------------------------
+
+Visualizar conteúdo da chave publica
+
+cat id_bionic.pub
+
+-------------------------------------------------------
+
+Direcionar conteúdo da chave publica para o arquivo de autorizações de chaves
+
+cat id_bionic.pub >> .ssh/authorized_keys
+
+-------------------------------------------------------
+
+Acessando máquina virtual com a chave publica gerada
+
+ssh -i id_bionic vagrant@192.168.15.78
+
+-------------------------------------------------------
+
+vagrant ssh-config
+lista as configurações SSH
+O comando apresenta várias informações úteis como host name, porta, usuário e localização da chave privada.
+
+---------------------------------------------------------
+
+Como criamos máquinas através do Vagrant com frequência, é preciso limpar esse arquivo .ssh/known_host (ou apagar) de tempos e tempos.
+
+---------------------------------------------------------
+
+
+
+

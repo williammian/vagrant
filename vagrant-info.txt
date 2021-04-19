@@ -1,0 +1,76 @@
+O Vagrant é uma ferramenta que controla o Hypervisor a partir de um arquivo simples, o Vagranfile.
+
+O Vagrantfile define detalhes da máquina virtual, como o sistema operacional, a rede, software utilizado, etc.
+
+https://www.virtualbox.org/
+
+virtual box 6.0.4
+
+https://www.vagrantup.com/
+
+vagrant 2.2.3
+
+https://app.vagrantup.com/boxes/search
+
+Boxes
+
+Comandos
+
+vagrant version
+
+Criar pasta C:\vagrant\ambiente_dev
+
+vagrant init hashicorp/precise64
+Cria o arquivo Vagrantfile
+
+vagrant init hashicorp/precise64 -m
+Cria o arquivo Vagrantfile sem os comentários
+
+vagrant up
+Se a máquina virtual não foi criada ainda, o comando vai criar. Criar significa baixar e importar a box.
+Além de criar, também aplica as configurações na máquina virtual.
+
+vagrant status
+
+vagrant halt
+Para parar a maquina virtual
+
+vagrant suspend
+
+vagrant destroy
+
+vagrant reload
+
+vagrant resume
+
+vagrant ssh
+Para se conectar a maquina virtual
+
+vagrant ssh-config
+
+vagrant list-commands
+Listar comandos
+
+ssh -p 2222 vagrant
+Para se conectar a porta 2222 com o usuário vagrant@127.0.0.1
+
+---------------------------
+
+Acessar configuração do windows 10 > Aplicativos > Recursos Opcionais > Cliente OpenSSH
+
+---------------------------
+
+Git Bash (Git for Windows)
+
+---------------------------
+
+SSH com PuTTy
+
+----------------------------
+
+PuTTygen - PuTTy Key Generator
+
+----------------------------
+
+
+
