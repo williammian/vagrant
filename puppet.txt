@@ -7,3 +7,8 @@ sudo puppet apply --test
 
 sudo puppet apply /vagrant/configs/manifests/phpweb.pp
 
+config.vm.provision "puppet" do |puppet|
+  puppet.manifests_path = "manifests"
+  puppet.manifest_file = "wep.pp"
+end
+
