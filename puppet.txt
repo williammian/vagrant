@@ -7,8 +7,28 @@ sudo puppet apply --test
 
 sudo puppet apply /vagrant/configs/manifests/phpweb.pp
 
+-------------------------------------------------
+
+No mesmo Vagrantfile, podemos configurar várias máquinas, separando as configurações (Multi-Machine)
+
+O Puppet é uma ferramenta popular para provisionar uma máquina
+
+Provisionamento significa instalar e configurar tudo o que for necessário para rodar algum serviço ou aplicação
+
+Com Puppet, podemos definir os passos de instalação de mais alto nível, facilitando a manutenção
+
+Os passos de instalação são configurados em um arquivo manifest, com a extensão .pp
+
+Para rodar o Puppet, é preciso instalar um cliente na máquina virtual
+
+O Vagrant integra e consegue chamar o Puppet a partir do comando vagrant provision
+
+Ao rodar o comando vagrant up pela primeira vez, ele também roda o provisionamento
+
+Para configurar o Puppet dentro do Vagrantfile, basta usar:
+
 config.vm.provision "puppet" do |puppet|
   puppet.manifests_path = "manifests"
-  puppet.manifest_file = "wep.pp"
+  puppet.manifest_file = "phpwep.pp"
 end
 
