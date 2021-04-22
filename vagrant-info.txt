@@ -43,6 +43,8 @@ vagrant reload
 
 vagrant resume
 
+vagrant validate
+
 vagrant ssh
 Para se conectar a maquina virtual
 

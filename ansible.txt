@@ -1,0 +1,24 @@
+Ansible
+
+ansible.vm.provision "shell",
+      inline: "apt-get update && \
+               apt-get install -y software-properties-common && \
+               apt-add-repository --yes --update ppa:ansible/ansible && \
+               apt-get install -y ansible"
+
+ansible-playbook --version
+
+---------------------------------------
+
+pré-requisitos para rodar o Ansible
+
+O host precisa ser um sistema *NIX (algum sistema Unix).
+O Ansible não funciona no Windows. Por isso criamos uma máquina virtual com Ubuntu, só para instalar e rodar o Ansible.
+
+O SSH deve funcionar entre o host e o guest.
+O Ansible envia comandos SSH do host para o guest.
+
+----------------------------------------
+
+
+
