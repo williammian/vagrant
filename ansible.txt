@@ -1,5 +1,9 @@
 Ansible
 
+https://docs.ansible.com/ansible/latest/index.html
+
+https://www.vagrantup.com/docs/provisioning/ansible
+
 ansible.vm.provision "shell",
       inline: "apt-get update && \
                apt-get install -y software-properties-common && \
@@ -29,4 +33,66 @@ Podemos definir grupos de máquinas e definir detalhes da conexão SSH, como a cha
 
 playbook.yml
 
+----------------------------------------
+
+Dentro do Vagrantfile, defina mais um ambiente, com o nome mysqlserver. 
+Escolha a configuração de rede, baseado na sua necessidade:
+
+config.vm.define "mysqlserver" do |mysqlserver|
+mysqlserver.vm.network "public_network", ip: "192.168.1.22"
+mysqlserver.vm.provision "shell", inline: "cat /vagrant/configs/id_bionic.pub >> .ssh/authorized_keys"
+end
+
+----------------------------------------
+
+Dentro do Vagrantfile, defina o ambiente que vai executar o Ansible, e configure a rede:
+
+config.vm.define "ansible" do |ansible|
+ansible.vm.network "public_network", ip: "192.168.1.26"
+end
+
+----------------------------------------
+
+No Vagrantfile, no ambiente ansible, adicione as configurações para instalar o Ansible, copiar a chave privada e executar o playbook:
+
+ansible.vm.provision "shell",
+    inline: "apt-get update &&  \
+               apt-get install -y software-properties-common && \
+               apt-add-repository --yes --update ppa:ansible/ansible && \
+               apt-get install -y ansible "
+
+ansible.vm.provision "shell",
+    inline: "cp /vagrant/id_bionic /home/vagrant/id_bionic && \
+                chmod 600 /home/vagrant/id_bionic"
+
+ansible.vm.provision "shell",
+    inline: "ansible-playbook -i /vagrant/configs/ansible/hosts \
+                  /vagrant/configs/ansible/playbook.yml"
+                  
+-------------------------------------------
+
+Crie uma nova pasta ansible, dentro da pasta configs
+
+Coloque o arquivo hosts e playbook.yml na pasta configs/ansible
+
+Suba as duas máquinas (mysqlserver e ansible):
+vagrant up mysqlserver ansible
+
+--------------------------------------------
+
+O Ansible, assim como o Puppet, é uma ferramenta para provisionar uma máquina.
+
+O Ansible envia comandos SSH para a máquina a ser configurada, e não precisa de um cliente instalado (apenas o Python).
+
+Os passos de instalação são configurados de alto nível, dentro de um playbook.
+
+O arquivo de inventário (hosts) define os alvos da instalação.
+
+O Vagrant integra o Ansible e tem uma configuração dedicada:
+config.vm.provision "ansible" do |ansible|
+ ansible.inventory_path = "hosts"
+ ansible.playbook = "playbook.yml"
+end
+
+---------------------------------------------
 
