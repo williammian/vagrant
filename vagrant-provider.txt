@@ -7,3 +7,59 @@ config.vm.provider "virtualbox" do |v|
   v.cpus = 2
 end
 
+--------------------------------------
+
+Vagrant Box
+
+
+---------------------------------------
+
+Global Status
+
+vagrant global-status
+
+vagrant global-status --prune
+O comando global-status mostra todas as máquinas configuradas no host, 
+e a flag --prune garante que entradas desatualizadas serão removidas.
+
+vagrant box list
+
+vagrant box prune
+
+vagrant box remove hashicorp/precise64
+
+----------------------------------------
+
+Há comandos do Vagrant para controlar uma máquina virtual, como vagrant up ou vagrant provision.
+
+Em configurações Multi-Machine, é possível ser mais específico e usar o nome da configuração/máquina, 
+por exemplo vagrant up phpweb.
+
+Nesses comandos, em lugar do nome, podemos usar também:
+O ID da máquina
+Você pode passar o nome ou o ID.
+O importante é que podemos executar o comando a partir de qualquer pasta, usando o ID da máquina.
+
+Funciona a partir de qualquer diretório, por exemplo:
+
+vagrant destroy -f <ID>
+
+-------------------------------------------
+
+No Vagrantfile, podemos definir configurações específicas do provedor (hypervisor).
+
+As configurações são referente à memória, CPU, rede ou interface gráfica, entre outras opções.
+
+Para listar todos as boxes baixadas, use o comando: vagrant box list
+
+Para remover as boxes desatualizadas: vagrant box prune ou vagrant box remove <nome>
+
+Para listar todas as máquinas que foram criadas no host, use: vagrant global-status --prune
+
+Através do ID da máquina, podemos controlar a máquina virtual fora da pasta do projeto, por exemplo: vagrant destroy -f <ID-da-VM>
+
+-------------------------------------------
+
+
+
+
