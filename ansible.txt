@@ -20,5 +20,13 @@ O Ansible envia comandos SSH do host para o guest.
 
 ----------------------------------------
 
+Arquivos
+
+hosts
+É o inventário que define quais máquinas queremos provisionar.
+O arquivo hosts possui os endereços das máquinas onde queremos aplicar o provisionamento.
+Podemos definir grupos de máquinas e definir detalhes da conexão SSH, como a chave ou usuário.
+
+playbook.yml
 
 
