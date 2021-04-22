@@ -1,0 +1,32 @@
+Docker
+
+No Vagrantfile, crie um novo ambiente para testar o Docker, use o shell provisioner para instalar o Docker:
+
+  config.vm.define "dockerhost" do |dockerhost|
+    dockerhost.vm.provider "virtualbox" do |vb|
+      vb.memory = 512
+      vb.cpus = 1
+      vb.name = "ubuntu_dockerhost"
+    end
+    dockerhost.vm.provision "shell", inline: "apt-get update && apt-get install -y docker.io"
+  end
+
+Suba a máquina virtual e conecte-se a ela: vagrant up dockerhost && vagrant ssh dockerhost
+
+Uma vez conectado, tente inicializar um container Docker, através do seguinte comando:
+
+sudo docker run hello-world
+
+--------------------------------------------------
+
+O Docker é uma tecnologia para criar, rodar e administrar containers, baseado no Linux
+
+Containers virtualizam o sistema operacional
+
+Máquinas virtuais virtualizam o hardware
+
+Containers são mais leves do que máquinas virtuais
+
+Ambos, containers e máquinas virtuais, servem para rodar e isolar processos e aplicações
+
+---------------------------------------------------
