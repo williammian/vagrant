@@ -1,5 +1,6 @@
 ambiente_dev/bionic/.vagrant/
 ambiente_dev/precise/.vagrant/
+ambiente_teste/bionic/.vagrant/
 
 HELP.md
 target/
